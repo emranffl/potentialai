@@ -29,24 +29,6 @@ export function ModeToggle({ className }: { className?: string }) {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-
-      {/* <DropdownMenuContent align="end" className="z-[1000]">
-        <DropdownMenuItem
-          className="cursor-pointer"
-          onClick={() => setTheme("light")}
-          disabled={theme === "light"}
-        >
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          className="cursor-pointer"
-          onClick={() => setTheme("dark")}
-          disabled={theme === "dark"}
-        >
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
-      </DropdownMenuContent> */}
     </DropdownMenu>
   )
 }

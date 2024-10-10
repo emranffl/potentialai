@@ -16,7 +16,7 @@ export const Navbar = () => {
           <Link href="#contact">Contact</Link>
         </nav>
         <Button>Download CV</Button>
-        <ModeToggle className="ml-4" />
+        <ModeToggle className="border-0" />
       </div>
     </header>
   )
