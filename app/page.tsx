@@ -1,8 +1,8 @@
-import { Contact } from "./Components/Contact";
-import { About } from "./Components/About";
-import { Projects } from "./Components/Projects";
-import { Services } from "./Components/Services";
-import { Testimonials } from "./Components/Testimonials";
+import { About } from "./Components/About"
+import { Contact } from "./Components/Contact"
+import { Projects } from "./Components/Projects"
+import { Services } from "./Components/Services"
+import { Testimonials } from "./Components/Testimonials"
 
 export default function HomePage() {
   return (
@@ -13,5 +13,5 @@ export default function HomePage() {
       <Testimonials />
       <Contact />
     </main>
-  );
+  )
 }

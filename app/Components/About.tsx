@@ -1,7 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { motion,useAnimation } from "framer-motion"
+import { motion, useAnimation } from "framer-motion"
 import Image from "next/image"
 import { useEffect } from "react"
 import heroImg from "/public/images/hero.png"

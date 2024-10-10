@@ -14,7 +14,7 @@ body {
 
 @layer base {
   :root {
-    --highlight: #FD6F00;
+    --highlight: #fd6f00;
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -42,7 +42,7 @@ body {
     --radius: 0.5rem;
   }
   .dark {
-    --highlight: #FD6F00;
+    --highlight: #fd6f00;
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
