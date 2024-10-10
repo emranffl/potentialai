@@ -6,12 +6,12 @@ import { Testimonials } from "./Components/Testimonials";
 
 export default function HomePage() {
   return (
-    <>
+    <main className="container">
       <About />
       <Services />
       <Projects />
       <Testimonials />
       <Contact />
-    </>
+    </main>
   );
 }
