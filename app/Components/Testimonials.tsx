@@ -11,7 +11,7 @@ const testimonials = [
     role: "CEO",
     image: "/images/testimonials/1.jpeg",
     content:
-      "Lorem ipsum dolor sit amet consectetur. In enim cursus odio accumsan. Id leo urna velit neque mattis id tellus arcu condimentum. Augue dictum dolor elementum convallis dignissim malesuada commodo ultrices.",
+      "Lorem ipsum dolor sit amet consectetur. In enim cursus odio accumsan. Id leo urna velit neque mattis id tellus arcu condimentum. Augue dictum dolor elementum convallis.",
   },
   {
     name: "Jane Smith",
@@ -38,6 +38,7 @@ const testimonials = [
 
 export const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
 
   // Animation variants
   const slideVariants = {
@@ -49,10 +50,13 @@ export const Testimonials = () => {
   // auto play
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+      if (!paused) {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+      }
     }, 5000)
+
     return () => clearInterval(interval)
-  }, [])
+  }, [paused]) // Run effect whenever paused state changes
 
   return (
     <section id="testimonials" className="px-8 py-16">
@@ -64,7 +68,7 @@ export const Testimonials = () => {
 
       <div className="mt-10 flex justify-center">
         <div className="relative w-full max-w-3xl">
-          {/* // + Testimonial Card */}
+          {/* Testimonial Card */}
           <div className="p-1">
             <motion.div
               className="mx-auto flex flex-col space-y-6 rounded-lg bg-card p-6 md:flex-row md:items-center md:space-x-6 md:space-y-0"
@@ -73,8 +77,10 @@ export const Testimonials = () => {
               exit="exit"
               variants={slideVariants}
               key={currentIndex} // Key added to trigger re-render for exit animations
+              onMouseEnter={() => setPaused(true)} // Pause on mouse enter
+              onMouseLeave={() => setPaused(false)} // Resume on mouse leave
             >
-              {/* // + Image */}
+              {/* Image */}
               <div className="flex-shrink-0">
                 <Image
                   src={testimonials[currentIndex].image}
@@ -85,9 +91,9 @@ export const Testimonials = () => {
                 />
               </div>
 
-              {/* // + Testimonial content */}
+              {/* Testimonial content */}
               <div className="space-y-4">
-                <div className="">
+                <div>
                   <span className="text-3xl leading-none text-highlight">“</span>
                   <p className="inline pl-1 text-base text-[#424242]">
                     {testimonials[currentIndex].content}
@@ -95,7 +101,7 @@ export const Testimonials = () => {
                   <span className="inline text-right text-3xl leading-none text-highlight">“</span>
                 </div>
 
-                {/* // + Name and role */}
+                {/* Name and role */}
                 <div className="space-y-3 text-center text-black md:text-left">
                   <p className="text-lg font-bold">{testimonials[currentIndex].name}</p>
                   <p className="text-sm">{testimonials[currentIndex].role}</p>
@@ -104,7 +110,7 @@ export const Testimonials = () => {
             </motion.div>
           </div>
 
-          {/* // + Carousel indicators */}
+          {/* Carousel indicators */}
           <div className="mt-6 flex justify-center space-x-2">
             {testimonials.map((_, index) => (
               <button
