@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
-import { Key, useState } from "react"
+import { Key, useMemo, useState } from "react"
 
 type Project = {
   title: string
@@ -36,7 +36,7 @@ const projects: Project[] = [
     image: "/images/projects/2.png",
     category: "Web Design",
   },
-  { title: "Ecom Web Page Design", image: "/images/projects/3.png", category: "Web Design " },
+  { title: "Ecom Web Page Design", image: "/images/projects/3.png", category: "Web Design" },
   // app design
   {
     title: "Ecom App Design",
@@ -67,16 +67,25 @@ type GroupedProjects = {
   [key: string]: Project[]
 }
 
-let groupedProjects: GroupedProjects = {}
-groupedProjects["All"] = projects
-// @ts-expect-error
-groupedProjects = {
-  ...groupedProjects,
-  ...Object.groupBy(projects, ({ category }) => category.trim()),
-}
+// group projects by category
+const categorizedProjects = projects.reduce((acc: GroupedProjects, project: Project) => {
+  const key = project.category.trim()
+  if (!acc[key]) {
+    acc[key] = []
+  }
+  acc[key].push(project)
+  return acc
+}, {})
 
 export const Projects = () => {
   const [selectedNiche, setSelectedNiche] = useState("All")
+  let groupedProjects: GroupedProjects = {}
+  groupedProjects["All"] = projects
+  groupedProjects = {
+    ...groupedProjects,
+    ...categorizedProjects,
+  }
+  groupedProjects = useMemo(() => groupedProjects, [])
 
   return (
     <section id="projects" className="py-16">
@@ -97,7 +106,7 @@ export const Projects = () => {
                 className={cn(
                   "rounded-lg border-[0.4px]",
                   selectedNiche === nicheName &&
-                    "bg-highlight text-white hover:bg-highlight/50 hover:text-slate-950 dark:text-white",
+                    "bg-highlight text-white hover:bg-highlight dark:text-white",
                 )}
                 size="lg"
                 onClick={() => setSelectedNiche(nicheName)}
