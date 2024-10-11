@@ -1,113 +1,121 @@
 "use client"
 
-import { Carousel,CarouselContent,CarouselItem } from "@/components/ui/carousel"
 import { cn } from "@/lib/utils"
-import Autoplay from "embla-carousel-autoplay"
-import useEmblaCarousel from "embla-carousel-react"
+import { motion } from "framer-motion"
 import Image from "next/image"
-import React,{ useCallback,useEffect,useState } from "react"
+import { useEffect, useState } from "react"
+
+const testimonials = [
+  {
+    name: "John Doe",
+    role: "CEO",
+    image: "/images/testimonials/1.jpeg",
+    content:
+      "Lorem ipsum dolor sit amet consectetur. In enim cursus odio accumsan. Id leo urna velit neque mattis id tellus arcu condimentum. Augue dictum dolor elementum convallis dignissim malesuada commodo ultrices.",
+  },
+  {
+    name: "Jane Smith",
+    role: "CTO",
+    image: "/images/testimonials/2.jpeg",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur aliquid at sequi. Eum debitis aspernatur molestias nemo delectus nulla id.",
+  },
+  {
+    name: "Kenedy",
+    role: "Designer",
+    image: "/images/testimonials/1.jpeg",
+    content:
+      "Lorem ipsum dolor sit amet consectetur. In enim cursus odio accumsan. Id leo urna velit neque mattis id tellus arcu condimentum. Augue dictum dolor elementum conv.",
+  },
+  {
+    name: "Bob",
+    role: "Developer",
+    image: "/images/testimonials/2.jpeg",
+    content:
+      "Lorem ipsum dolor sit amet consectetur. In enim cursus odio accumsan. Id leo urna velit neque mattis id tell arcu condimentum. Augue dictum dolor elementum convallis",
+  },
+]
 
 export const Testimonials = () => {
-  const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }))
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  // Embla carousel initialization
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", skipSnaps: false }, [
-    plugin.current,
-  ])
+  // Animation variants
+  const slideVariants = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -100 },
+  }
 
-  const [selectedIndex, setSelectedIndex] = useState(0)
-
-  // Callback to update the active slide index
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return
-    setSelectedIndex(emblaApi.selectedScrollSnap())
-  }, [emblaApi])
-
+  // auto play
   useEffect(() => {
-    if (!emblaApi) return
-    emblaApi.on("select", onSelect)
-    onSelect()
-  }, [emblaApi, onSelect])
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <section id="testimonials" className="px-8 py-16">
       <h2 className="text-center">Testimonials</h2>
       <p className="text-center">
         Lorem ipsum dolor sit amet consectetur. Tristique amet sed massa nibh lectus netus in.
-        Aliquet donec morbi convallis pretium
+        Aliquet donec morbi convallis pretium.
       </p>
 
       <div className="mt-10 flex justify-center">
-        <div className="w-full max-w-3xl">
-          {/* Embla ref should be applied here directly to the scroll container */}
-          <div className="overflow-hidden" ref={emblaRef}>
-            <Carousel
-              plugins={[plugin.current]}
-              className="w-full"
-              onMouseEnter={plugin.current.stop}
-              onMouseLeave={plugin.current.reset}
+        <div className="relative w-full max-w-3xl">
+          {/* // + Testimonial Card */}
+          <div className="p-1">
+            <motion.div
+              className="mx-auto flex flex-col space-y-6 rounded-lg bg-card p-6 md:flex-row md:items-center md:space-x-6 md:space-y-0"
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={slideVariants}
+              key={currentIndex} // Key added to trigger re-render for exit animations
             >
-              {/* CarouselContent becomes the scrollable container for Embla */}
-              <CarouselContent className="flex">
-                {Array.from({ length: 2 }).map((_, index) => (
-                  <CarouselItem key={index} className="flex-0 carousel-item w-full">
-                    <div className="p-1">
-                      <div className="mx-auto flex flex-col space-y-6 rounded-lg bg-card p-6 dark:bg-gray-800 md:flex-row md:items-center md:space-x-6 md:space-y-0">
-                        {/* Image */}
-                        <div className="flex-shrink-0">
-                          <Image
-                            src={`/images/testimonials/${selectedIndex + 1}.jpeg`}
-                            alt="testimonial avatar"
-                            width={160}
-                            height={160}
-                            className="size-40 rounded-full object-cover object-center"
-                          />
-                        </div>
-
-                        {/* Testimonial content */}
-                        <div className="space-y-4">
-                          <div className="">
-                            <span className="text-3xl leading-none text-highlight">“</span>
-                            <p className="inline pl-1 text-base">
-                              Lorem ipsum dolor sit amet consectetur. In enim cursus odio accumsan.
-                              Id leo urna velit neque mattis id tellus arcu condimentum. Augue
-                              dictum dolor elementum convallis dignissim malesuada commodo ultrices.
-                            </p>
-                            <span className="inline text-right text-3xl leading-none text-highlight">
-                              “
-                            </span>
-                          </div>
-
-                          <div className="space-y-3 text-center md:text-left">
-                            {/* Name and role */}
-                            <div>
-                              <p className="text-lg font-bold text-gray-900 dark:text-white">
-                                Name
-                              </p>
-                              <p className="text-sm text-gray-500 dark:text-gray-400">CEO</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-
-              {/* Carousel indicators */}
-              <div className="mt-6 flex justify-center space-x-2">
-                {Array.from({ length: 2 }).map((_, index) => (
-                  <button
-                    key={index}
-                    className={cn(
-                      "h-3 w-9 rounded-full bg-[#D9D9D9]",
-                      selectedIndex === index && "bg-highlight",
-                    )}
-                    onClick={() => emblaApi && emblaApi.scrollTo(index)}
-                  ></button>
-                ))}
+              {/* // + Image */}
+              <div className="flex-shrink-0">
+                <Image
+                  src={testimonials[currentIndex].image}
+                  alt="testimonial avatar"
+                  width={160}
+                  height={160}
+                  className="mx-auto size-40 rounded-full object-cover object-center md:mx-0"
+                />
               </div>
-            </Carousel>
+
+              {/* // + Testimonial content */}
+              <div className="space-y-4">
+                <div className="">
+                  <span className="text-3xl leading-none text-highlight">“</span>
+                  <p className="inline pl-1 text-base text-[#424242]">
+                    {testimonials[currentIndex].content}
+                  </p>
+                  <span className="inline text-right text-3xl leading-none text-highlight">“</span>
+                </div>
+
+                {/* // + Name and role */}
+                <div className="space-y-3 text-center text-black md:text-left">
+                  <p className="text-lg font-bold">{testimonials[currentIndex].name}</p>
+                  <p className="text-sm">{testimonials[currentIndex].role}</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* // + Carousel indicators */}
+          <div className="mt-6 flex justify-center space-x-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                className={cn(
+                  "h-3 w-9 rounded-full bg-[#D9D9D9]",
+                  currentIndex === index && "bg-highlight",
+                )}
+                onClick={() => setCurrentIndex(index)}
+              ></button>
+            ))}
           </div>
         </div>
       </div>
