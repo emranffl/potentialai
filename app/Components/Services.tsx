@@ -3,7 +3,7 @@ import uiux from "@/public/images/services/1.png"
 import webd from "@/public/images/services/2.png"
 import appd from "@/public/images/services/3.png"
 import graphd from "@/public/images/services/4.png"
-import Image,{ StaticImageData } from "next/image"
+import Image, { StaticImageData } from "next/image"
 
 interface Service {
   title: string
@@ -28,7 +28,7 @@ export const Services = () => {
       </p>
       <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
         {services.map((service, index) => (
-          <Card key={index} className="rounded-[0.875rem] border-0 bg-[#F8F8F8] p-6">
+          <Card key={index} className="rounded-[0.875rem] border-0 p-6">
             <div className="grid h-full space-y-3">
               <div className="relative h-auto w-20">
                 <Image src={service.icon} alt={service.title} height={70} className="" />

@@ -19,7 +19,7 @@ const config: Config = {
     },
     extend: {
       colors: {
-        highlight: "var(--highlight)",
+        highlight: "hsl(var(--highlight))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

@@ -16,21 +16,36 @@ export const Navbar = () => {
         <Logo />
         <div className="flex items-center gap-6">
           <nav className="space-x-6">
-            <Link href="#home" className="text-base">
-              Home
-            </Link>
-            <Link href="#about" className="text-base">
-              About Me
-            </Link>
-            <Link href="#services" className="text-base">
-              Services
-            </Link>
-            <Link href="#projects" className="text-base">
-              Projects
-            </Link>
-            <Link href="#contact" className="text-base">
-              Contact
-            </Link>
+            {[
+              {
+                title: "Home",
+                href: "#home",
+              },
+              {
+                title: "About Me",
+                href: "#about",
+              },
+              {
+                title: "Services",
+                href: "#services",
+              },
+              {
+                title: "Projects",
+                href: "#projects",
+              },
+              {
+                title: "Testimonials",
+                href: "#testimonials",
+              },
+              {
+                title: "Contact",
+                href: "#contact",
+              },
+            ].map((item, index) => (
+              <Link key={index} href={item.href} className="text-base">
+                {item.title}
+              </Link>
+            ))}
           </nav>
           <Button>Download CV</Button>
           <ModeToggle className="border-0" />
