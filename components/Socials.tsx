@@ -1,3 +1,5 @@
+"use client"
+
 import { Dock, DockIcon } from "@/components/magicui/dock"
 import Facebook from "./SocialIcons/Facebook"
 import Instagram from "./SocialIcons/Instagram"

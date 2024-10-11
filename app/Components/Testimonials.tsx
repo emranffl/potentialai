@@ -59,11 +59,11 @@ export const Testimonials = () => {
   }, [paused]) // Run effect whenever paused state changes
 
   return (
-    <section id="testimonials" className="px-8 py-16">
+    <section id="testimonials" className="py-16">
       <h2 className="text-center">Testimonials</h2>
-      <p className="text-center">
-        Lorem ipsum dolor sit amet consectetur. Tristique amet sed massa nibh lectus netus in.
-        Aliquet donec morbi convallis pretium.
+      <p className="mx-auto max-w-4xl text-center">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem aut nesciunt
+        dignissimos, soluta rerum enim non unde esse ducimus exercitationem.
       </p>
 
       <div className="mt-10 flex justify-center">

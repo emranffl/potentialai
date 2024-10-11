@@ -20,11 +20,11 @@ const services: Service[] = [
 
 export const Services = () => {
   return (
-    <section id="services" className="px-8 py-16">
+    <section id="services" className="py-16">
       <h2 className="text-center">Services</h2>
-      <p className="text-center">
-        Lorem ipsum dolor sit amet consectetur. Tristique amet sed massa nibh lectus netus in.
-        Aliquet donec morbi convallis pretium
+      <p className="mx-auto max-w-4xl text-center">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem aut nesciunt
+        dignissimos, soluta rerum enim non unde esse ducimus exercitationem.
       </p>
       <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
         {services.map((service, index) => (

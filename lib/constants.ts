@@ -4,7 +4,7 @@ const transition = {
   damping: 32,
 } as const
 
-export const GeneralVariants = {
+export const ANIMATION_VARIANTS = {
   hidden: { opacity: 0, x: -40 },
   visible: { opacity: 1, x: 0 },
   transition: { ...transition },
@@ -15,3 +15,30 @@ export const GeneralVariants = {
   transitionHeroImage: { ...transition, type: "tween", delay: 0.6, duration: 0.15 },
   transitionHeroImageOverlay: { ...transition, type: "tween", delay: 0.8, duration: 0.35 },
 } as const
+
+export const LINKS = [
+  {
+    title: "Home",
+    href: "#home",
+  },
+  {
+    title: "About Me",
+    href: "#about",
+  },
+  {
+    title: "Services",
+    href: "#services",
+  },
+  {
+    title: "Projects",
+    href: "#projects",
+  },
+  {
+    title: "Testimonials",
+    href: "#testimonials",
+  },
+  {
+    title: "Contact",
+    href: "#contact",
+  },
+] as const

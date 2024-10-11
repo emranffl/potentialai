@@ -79,24 +79,25 @@ export const Projects = () => {
   const [selectedNiche, setSelectedNiche] = useState("All")
 
   return (
-    <section id="projects" className="px-8 py-16">
+    <section id="projects" className="py-16">
       <div className="space-y-10 sm:space-y-16">
         <div>
           <h2 className="text-center">My Projects</h2>
-          <p className="text-center">
-            Lorem ipsum dolor sit amet consectetur. Mollis erat duis aliquam mauris est risus
-            lectus. Phasellus consequat urna tellus
+          <p className="mx-auto max-w-4xl text-center">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem aut nesciunt
+            dignissimos, soluta rerum enim non unde esse ducimus exercitationem.
           </p>
         </div>
-        <div className="flex justify-center">
-          <div className="space-x-4">
+        <div className="grid overflow-x-scroll">
+          <div className="mx-auto min-w-[700px] space-x-4 pb-2">
             {Object.keys(groupedProjects).map((nicheName: string, index: Key) => (
               <Button
                 key={index}
                 variant="secondary"
                 className={cn(
                   "rounded-lg border-[0.4px]",
-                  selectedNiche === nicheName && "hover:bg-highlight/50 bg-highlight text-white",
+                  selectedNiche === nicheName &&
+                    "bg-highlight text-white hover:bg-highlight/50 hover:text-slate-950 dark:text-white",
                 )}
                 size="lg"
                 onClick={() => setSelectedNiche(nicheName)}
@@ -106,9 +107,9 @@ export const Projects = () => {
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-9">
           {groupedProjects[selectedNiche].map((project, index) => (
-            <Card key={index} className="border-0 p-0">
+            <Card key={index} className="border-0 bg-background p-0">
               <Image
                 src={project.image}
                 alt={project.title}
@@ -116,9 +117,10 @@ export const Projects = () => {
                 height={200}
                 loading="lazy"
                 placeholder="empty"
+                className="rounded-xl"
               />
               <div className="mt-6 space-y-2">
-                <p className="text-highlight text-[19px]">{project.category}</p>
+                <p className="text-[19px] text-highlight">{project.category}</p>
                 <h5 className="text-2xl">{project.title}</h5>
               </div>
             </Card>

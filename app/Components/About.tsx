@@ -1,8 +1,8 @@
 "use client"
 
 import { Progress } from "@/components/ui/progress"
-import { GeneralVariants } from "@/lib/constants"
-import { motion,useAnimation } from "framer-motion"
+import { ANIMATION_VARIANTS } from "@/lib/constants"
+import { motion, useAnimation } from "framer-motion"
 import Image from "next/image"
 import { useEffect } from "react"
 import aboutImg from "/public/images/about.png"
@@ -22,9 +22,9 @@ const About = () => {
 
     return () => window.removeEventListener("scroll", handleScroll)
   }, [controls])
-  
+
   return (
-    <section id="about" className="px-8 py-16">
+    <section id="about" className="py-16">
       <div className="container grid-cols-2 gap-8 lg:grid">
         <div className="relative min-h-64 md:min-h-80">
           {/* //+ image overlay */}
@@ -32,7 +32,7 @@ const About = () => {
             <motion.div
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={GeneralVariants.transitionHeroImageOverlay}
+              transition={ANIMATION_VARIANTS.transitionHeroImageOverlay}
               className="invisible absolute top-16 z-10 2xl:visible 2xl:left-24"
             >
               <Image
@@ -51,7 +51,7 @@ const About = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={GeneralVariants.transitionHeroImage}
+              transition={ANIMATION_VARIANTS.transitionHeroImage}
             >
               <Image
                 src={aboutImg}
@@ -79,7 +79,7 @@ const About = () => {
               { name: "Website Design", progress: 85 },
               { name: "App Design", progress: 95 },
               { name: "Graphic Design", progress: 89 },
-            ].map(({name, progress}) => (
+            ].map(({ name, progress }) => (
               <div key={name} className="space-y-2">
                 <div className="flex items-center justify-between">
                   <h5>{name}</h5>
