@@ -7,24 +7,7 @@ import Image from "next/image"
 import { useEffect } from "react"
 import heroImg from "/public/images/hero.png"
 import overlayImg from "/public/images/overlay-rect.png"
-
-const transition = {
-  type: "spring",
-  stiffness: 800,
-  damping: 32,
-} as const
-
-const GeneralVariants = {
-  hidden: { opacity: 0, x: -40 },
-  visible: { opacity: 1, x: 0 },
-  transition: { ...transition },
-  transitionOverline: { ...transition, delay: 0 },
-  transitionDisplayText: { ...transition, delay: 0.1 },
-  transitionLeadText: { ...transition, delay: 0.2 },
-  transitionHeroButtons: { ...transition, delay: 0.4 },
-  transitionHeroImage: { ...transition, type: "tween", delay: 0.6, duration: 0.15 },
-  transitionHeroImageOverlay: { ...transition, type: "tween", delay: 0.8, duration: 0.35 },
-} as const
+import { GeneralVariants } from "@/lib/constants"
 
 export const Hero = () => {
   const controls = useAnimation()
@@ -48,7 +31,7 @@ export const Hero = () => {
           <div className="flex items-center">
             <div className="space-y-4">
               {/*//+ intro */}
-              <div className="">
+              <div className="-mb-5">
                 <motion.span
                   variants={GeneralVariants}
                   initial="hidden"
@@ -86,7 +69,7 @@ export const Hero = () => {
                 initial="hidden"
                 animate="visible"
                 transition={GeneralVariants.transitionLeadText}
-                className="lead min-[2048px]:text-balance"
+                className="lead pt-3 min-[2048px]:text-balance"
               >
                 Lorem ipsum dolor sit amet consectetur. Tristique amet sed massa nibh lectus netus
                 in. Aliquet donec morbi convallis pretium. Turpis tempus pharetra
@@ -110,7 +93,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={GeneralVariants.transitionHeroImageOverlay}
-              className="absolute left-28 top-16 z-10"
+              className="invisible absolute top-16 z-10 2xl:visible 2xl:left-28"
             >
               <Image
                 src={overlayImg}

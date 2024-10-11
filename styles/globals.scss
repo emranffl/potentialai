@@ -1,0 +1,37 @@
+@import "./base";
+@import "./type";
+
+.scroll-progress {
+  height: 0.5rem;
+  position: fixed;
+  top: 4.075rem;
+  z-index: 10;
+  // background-color: theme("backgroundColor.primary.DEFAULT");
+  background: linear-gradient(
+    to right,
+    theme("backgroundColor.transparent"),
+    theme("backgroundColor.purple.800") 30%,
+    theme("backgroundColor.primary.DEFAULT")
+  );
+  width: 100%;
+  scale: 0 1;
+  transform-origin: left;
+  animation: scroll-progress linear;
+  animation-timeline: scroll();
+}
+
+@keyframes scroll-progress {
+  to {
+    scale: 1 1;
+  }
+}
+
+strong {
+  font-weight: 500;
+}
+
+small {
+  display: block;
+  margin-bottom: 3rem;
+  @apply text-foreground/50;
+}

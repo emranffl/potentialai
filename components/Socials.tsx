@@ -1,15 +1,11 @@
-import React from "react"
-
 import { Dock, DockIcon } from "@/components/magicui/dock"
 import Facebook from "./SocialIcons/Facebook"
 import Instagram from "./SocialIcons/Instagram"
 import LinkedIn from "./SocialIcons/LinkedIn"
 import Twitter from "./SocialIcons/Twitter"
 
-export type IconProps = React.HTMLAttributes<SVGElement>
-
 export function Socials() {
-  const className = "size-10 hover:border rounded-full p-1"
+  const className = "size-12 hover:border rounded-full p-2 dark:invert"
 
   return (
     <div className="relative">
