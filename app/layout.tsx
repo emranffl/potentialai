@@ -17,6 +17,18 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Personal Portfolio Landing Page",
   description: "A personal portfolio landing page built with Next.js and Tailwind CSS",
+  keywords: ["personal", "portfolio", "landing page", "next.js", "tailwind css"],
+  robots: "noindex, nofollow",
+  // openGraph: {
+  //   type: "website",
+  //   locale: "en_US",
+  //   images: {
+  //     url: "/images/hero.png",
+  //     width: 1200,
+  //     height: 630,
+  //     alt: "Personal Portfolio Landing Page",
+  //   },
+  // },
 }
 
 export default function RootLayout({

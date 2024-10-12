@@ -33,7 +33,7 @@ const Footer = () => {
           <Socials />
         </div>
       </div>
-      <div className="mt-8 bg-[#545454] py-6 text-gray-500 dark:bg-[#121212]">
+      <div className="mt-8 bg-[#545454] py-6 text-gray-500 dark:border-t dark:bg-[#121212]">
         <small className="mb-0 text-center text-sm text-white">
           © 2023 <span className="text-highlight">Mumair</span> All Rights Reserved, Inc.
         </small>
