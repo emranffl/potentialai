@@ -22,9 +22,9 @@ export const Navbar = () => {
   }
 
   return (
-    <header className={cn("sticky top-0 z-50 bg-background px-8 py-6 dark:border-b")}>
+    <header className={cn("sticky top-0 z-50 bg-background py-4 dark:border-b")}>
       {/* // + mobile nav */}
-      <div className="container flex items-center justify-between px-0 xl:hidden">
+      <div className="container flex items-center justify-between xl:hidden">
         <Logo monogram className="h-8" />
         <div className="flex items-center gap-2">
           {!navOpen && <ModeToggle />}

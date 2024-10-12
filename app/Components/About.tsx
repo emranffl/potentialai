@@ -24,7 +24,7 @@ const About = () => {
   }, [controls])
 
   return (
-    <section id="about" className="py-16">
+    <section id="about" className="pb-16">
       <div className="container grid-cols-2 gap-8 lg:grid">
         <div className="relative min-h-64 md:min-h-80">
           {/* //+ image overlay */}
@@ -67,9 +67,9 @@ const About = () => {
             </motion.div>
           </div>
         </div>
-        <div className="space-y-6">
-          <h2>About Me</h2>
-          <p className="">
+        <div className="mt-10 space-y-6 lg:mt-0">
+          <h2 className="text-center lg:text-left">About Me</h2>
+          <p className="mx-auto max-w-4xl text-center lg:mx-0 lg:max-w-none lg:text-left">
             Lorem ipsum dolor sit amet consectetur. Tristique amet sed massa nibh lectus netus in.
             Aliquet donec morbi convallis pretium. Turpis tempus pharetra
           </p>

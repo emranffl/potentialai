@@ -2,89 +2,27 @@
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { addBlurDataURL } from "@/lib/generateBlurDataURL"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { Key, useMemo, useState } from "react"
 
-type Project = {
+interface Project {
   title: string
   image: string
   category: string
 }
 
-const projects: Project[] = [
-  // ui/ux
-  {
-    title: "Portfolio Design",
-    image: "/images/projects/1.png",
-    category: "UI/UX",
-  },
-  { title: "Ecom App Design", image: "/images/projects/2.png", category: "UI/UX" },
-  {
-    title: "Dashboard Design",
-    image: "/images/projects/3.png",
-    category: "UI/UX",
-  },
-  // web design
-  {
-    title: "Product Landing Page Design",
-    image: "/images/projects/1.png",
-    category: "Web Design",
-  },
-  {
-    title: "Business Landing Page Design",
-    image: "/images/projects/2.png",
-    category: "Web Design",
-  },
-  { title: "Ecom Web Page Design", image: "/images/projects/3.png", category: "Web Design" },
-  // app design
-  {
-    title: "Ecom App Design",
-    image: "/images/projects/1.png",
-    category: "App Design",
-  },
-  { title: "Social App Design", image: "/images/projects/2.png", category: "App Design" },
-  { title: "Music App Design", image: "/images/projects/3.png", category: "App Design" },
-  // graphic design
-  {
-    title: "Logo Design",
-    image: "/images/projects/1.png",
-    category: "Graphic Design",
-  },
-  {
-    title: "Branding Design",
-    image: "/images/projects/2.png",
-    category: "Graphic Design",
-  },
-  {
-    title: "Print Design",
-    image: "/images/projects/3.png",
-    category: "Graphic Design",
-  },
-]
-
 type GroupedProjects = {
-  [key: string]: Project[]
+  [key: string]: Awaited<ReturnType<typeof addBlurDataURL<Project>>>
 }
 
-// group projects by category
-const categorizedProjects = projects.reduce((acc: GroupedProjects, project: Project) => {
-  const key = project.category.trim()
-  if (!acc[key]) {
-    acc[key] = []
-  }
-  acc[key].push(project)
-  return acc
-}, {})
+interface ProjectsProps {
+  groupedProjects: GroupedProjects
+}
 
-export const Projects = () => {
+export const Projects = ({ groupedProjects }: ProjectsProps) => {
   const [selectedNiche, setSelectedNiche] = useState("All")
-  let groupedProjects: GroupedProjects = {}
-  groupedProjects["All"] = projects
-  groupedProjects = {
-    ...groupedProjects,
-    ...categorizedProjects,
-  }
   groupedProjects = useMemo(() => groupedProjects, [])
 
   return (
@@ -116,16 +54,19 @@ export const Projects = () => {
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-9">
+
+        {/* // + Categorized projects grid */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-9">
           {groupedProjects[selectedNiche].map((project, index) => (
             <Card key={index} className="border-0 bg-background p-0">
               <Image
                 src={project.image}
                 alt={project.title}
-                width={350}
-                height={200}
+                width={681}
+                height={746}
                 loading="lazy"
-                placeholder="empty"
+                placeholder="blur"
+                blurDataURL={project?.blurDataUrl}
                 className="rounded-xl"
               />
               <div className="mt-6 space-y-2">

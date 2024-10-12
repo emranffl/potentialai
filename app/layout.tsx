@@ -10,6 +10,7 @@ const poppins = Poppins({
   display: "swap",
   preload: true,
   subsets: ["latin-ext"],
+  fallback: ["sans-serif"],
 })
 
 // + metadata

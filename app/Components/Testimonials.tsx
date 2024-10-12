@@ -40,14 +40,14 @@ export const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [paused, setPaused] = useState(false)
 
-  // Animation variants
+  // * Animation variants
   const slideVariants = {
     hidden: { opacity: 0, x: 100 },
     visible: { opacity: 1, x: 0 },
     exit: { opacity: 0, x: -100 },
   }
 
-  // auto play
+  // * auto play
   useEffect(() => {
     const interval = setInterval(() => {
       if (!paused) {
@@ -56,7 +56,16 @@ export const Testimonials = () => {
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [paused]) // Run effect whenever paused state changes
+  }, [paused])
+
+  // * Handle Next and Previous
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length)
+  }
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
 
   return (
     <section id="testimonials" className="py-16">
@@ -68,19 +77,28 @@ export const Testimonials = () => {
 
       <div className="mt-10 flex justify-center">
         <div className="relative w-full max-w-3xl">
-          {/* Testimonial Card */}
-          <div className="p-1">
+          {/* // + Testimonial Card */}
+          <div className="overflow-hidden p-1">
             <motion.div
               className="mx-auto flex flex-col space-y-6 rounded-lg bg-card p-6 md:flex-row md:items-center md:space-x-6 md:space-y-0"
               initial="hidden"
               animate="visible"
               exit="exit"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={(event, info) => {
+                if (info.offset.x < -50) {
+                  handleNext()
+                } else if (info.offset.x > 50) {
+                  handlePrev()
+                }
+              }}
               variants={slideVariants}
-              key={currentIndex} // Key added to trigger re-render for exit animations
-              onMouseEnter={() => setPaused(true)} // Pause on mouse enter
-              onMouseLeave={() => setPaused(false)} // Resume on mouse leave
+              key={currentIndex}
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
             >
-              {/* Image */}
+              {/* // + Image */}
               <div className="flex-shrink-0">
                 <Image
                   src={testimonials[currentIndex].image}
@@ -91,7 +109,7 @@ export const Testimonials = () => {
                 />
               </div>
 
-              {/* Testimonial content */}
+              {/* // + Testimonial content */}
               <div className="space-y-4">
                 <div>
                   <span className="text-3xl leading-none text-highlight">“</span>
@@ -101,7 +119,7 @@ export const Testimonials = () => {
                   <span className="inline text-right text-3xl leading-none text-highlight">“</span>
                 </div>
 
-                {/* Name and role */}
+                {/* // + Name and role */}
                 <div className="space-y-3 text-center text-black md:text-left">
                   <p className="text-lg font-bold">{testimonials[currentIndex].name}</p>
                   <p className="text-sm">{testimonials[currentIndex].role}</p>
@@ -110,7 +128,7 @@ export const Testimonials = () => {
             </motion.div>
           </div>
 
-          {/* Carousel indicators */}
+          {/* // + Carousel indicators */}
           <div className="mt-6 flex justify-center space-x-2">
             {testimonials.map((_, index) => (
               <button
