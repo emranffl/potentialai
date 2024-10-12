@@ -18,7 +18,7 @@ export default async function Image() {
       // ImageResponse JSX element
       <div
         style={{
-          backgroundImage: `url(${process.env.NEXT_PUBLIC_SITE_URL}/images/hero.png)`,
+          backgroundImage: `url(https://potentialai-two.vercel.app/images/hero.png)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
           backgroundPosition: "center",
