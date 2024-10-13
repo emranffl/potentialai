@@ -113,7 +113,7 @@ export const Testimonials = () => {
               <div className="space-y-4">
                 <div>
                   <span className="text-3xl leading-none text-highlight">“</span>
-                  <p className="inline pl-1 text-base text-[#424242]">
+                  <p className="inline h-40 pl-1 text-base text-[#424242]">
                     {testimonials[currentIndex].content}
                   </p>
                   <span className="inline text-right text-3xl leading-none text-highlight">“</span>

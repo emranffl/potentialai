@@ -75,12 +75,12 @@ const About = () => {
           </p>
           <div className="space-y-4">
             {[
-              { name: "UX", progress: 90 }, // You can set progress values as needed
-              { name: "Website Design", progress: 85 },
-              { name: "App Design", progress: 95 },
-              { name: "Graphic Design", progress: 89 },
+              { name: "UX", progress: 80 }, // You can set progress values as needed
+              { name: "Website Design", progress: 75 },
+              { name: "App Design", progress: 85 },
+              { name: "Graphic Design", progress: 79 },
             ].map(({ name, progress }) => (
-              <div key={name} className="space-y-2">
+              <div key={name} className="space-y-3">
                 <div className="flex items-center justify-between">
                   <h5>{name}</h5>
                   {/* <span className="text-highlight">{progress}%</span> */}
